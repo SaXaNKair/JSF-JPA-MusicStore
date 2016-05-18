@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>List of Products</title>
+        <h:outputStylesheet library="css" name="WebApplication2/murach.css"/>
+    </h:head>
+    <h:body>
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+        <ui:insert name="header">
+            <ui:include src="includes/header.xhtml"/>
+        </ui:insert>
+        <tr>
+        <ui:insert name="left-sider">
+            <ui:include src="includes/left-sider.xhtml"/>
+        </ui:insert>
+            <td style="align-content: center;">
+        <h:form>
+            <h:dataTable value="#{product.products}" var="p">
+                <h:column>
+                    <f:facet name="header">Code</f:facet>
+                    #{p.productCode}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{p.productDescription}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    #{p.productPrice/100}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText escape="false" value="&nbsp;"/>
+                    </f:facet>
+                    <h:outputText value=" "/>
+                    <h:commandLink value="Edit" action="util/edit?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{product.product}" value="#{p}"/>
+                    </h:commandLink> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText escape="false" value="&nbsp;"/>
+                    </f:facet>
+                    <h:commandLink value="Delete" action="util/delete?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{product.product}" value="#{p}"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="New Product" action="#{product.add}"/>
+            <h:commandButton value="Login" action="login"/>
+        </h:form>
+        </td>
+        <ui:insert name="right-sider">
+            <ui:include src="includes/right-sider.xhtml"/>
+        </ui:insert>
+        </tr>
+        <ui:insert name="footer">
+            <ui:include src="includes/footer.xhtml"/>
+        </ui:insert>
+        </table>
+    </h:body>
+</html>
+

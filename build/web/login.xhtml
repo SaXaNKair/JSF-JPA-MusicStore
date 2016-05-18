@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Welcome to Our Music Store</title>
+        <h:outputStylesheet library="css" name="WebApplication2/murach.css"/>
+    </h:head>
+    <h:body>
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+        <ui:insert name="header">
+            <ui:include src="includes/header.xhtml"/>
+        </ui:insert>
+        <tr>
+        <ui:insert name="left-sider">
+            <ui:include src="includes/left-sider.xhtml"/>
+        </ui:insert>
+            <td style="align-content: center;">
+        <h1 style="text-align: center;">You Must Login In Order to Proceed</h1>
+        <h:form>
+            <p:panelGrid columns="2" style="position: relative; top: 40%; left: 30%;">
+                <f:facet name="header">Login Form</f:facet>
+                <h:outputText value=""/>
+                <p:inputText value="#{login.username}"/>
+                <h:outputText value=""/>
+                <p:password value="#{login.password}"/>
+                <f:facet name="footer">
+                    <p:commandButton value="Login" action="#{login.loginString()}"/>
+                    <p:button value="Cancel" href="list.xhtml"/>
+                </f:facet>
+            </p:panelGrid>
+        </h:form>    
+        </td>
+        <ui:insert name="right-sider">
+            <ui:include src="includes/right-sider.xhtml"/>
+        </ui:insert>
+        </tr>
+        <ui:insert name="footer">
+            <ui:include src="includes/footer.xhtml"/>
+        </ui:insert>
+        </table>
+    </h:body>
+</html>
+

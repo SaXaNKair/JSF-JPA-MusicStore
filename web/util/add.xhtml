@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+          
+      xmlns:ez="http://xmlns.jcp.org/jsf/composite/ezcomp">
+    <h:head>
+        <title>Add Product</title>
+        <h:outputStylesheet library="css" name="WebApplication2/murach.css"/>
+    </h:head>
+    <h:body>
+        <!-- Header and left-bar -->
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+        <ui:insert name="header">
+            <ui:include src="../includes/header.xhtml"/>
+        </ui:insert>
+        <tr>
+        <ui:insert name="left-sider">
+            <ui:include src="../includes/left-sider.xhtml"/>
+        </ui:insert>
+            <td>
+        <!-- Content -->
+        <h2>Create New Product</h2>
+        <h:form>
+            <!-- Custom component that check input with ajax-->
+            <ez:fieldCheck lable="Product Code" 
+                           input="#{product.product.productCode}" 
+                           listener="#{product.checkCode()}" 
+                           message="#{product.message}"/>
+            <br/>
+            <ez:field lable="Product Description: " 
+                      input="#{product.product.productDescription}"/>
+            <br/>
+            <ez:fieldCheck lable="Product Price" 
+                           input="#{product.product.productPrice}" 
+                           listener="#{product.checkPrice(e)}" 
+                           message="#{product.messagePrice}"/>
+            <br/>
+         <h:commandButton value="Complete" action="#{product.insertProduct()}"/>
+        </h:form>
+        <h:form>
+            <h:commandButton value="Cancel" action="list" />
+        </h:form>
+        <!-- Right-bar and footer-->
+        </td>
+        <ui:insert name="right-sider">
+            <ui:include src="../includes/right-sider.xhtml"/>
+        </ui:insert>
+        </tr>
+        <ui:insert name="footer">
+            <ui:include src="../includes/footer.xhtml"/>
+        </ui:insert>
+        </table>
+    </h:body>
+</html>
+
